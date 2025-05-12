@@ -335,7 +335,11 @@ def entry_point(out_type, mode, device, ckpt, source, dest, jit, threshold, resi
     writer = None
 
     for img, name in loader:
-        filename, ext = os.path.splitext(name) if name is not None else None, None
+        if name is None:
+            filename, ext = None, None
+        else:
+            filename, ext = os.path.splitext(name)
+        
         ext = ext[1:] if ext is not None else None
         ext = save_format if save_format is not None else ext
         frame_progress.set_description("{}".format(name))

@@ -6,7 +6,7 @@ from flet import (
     Page,
     Row,
     Text,
-    icons,
+    Icons,
 )
 import os
 import torch
@@ -140,13 +140,13 @@ def main(page):
     page.theme_mode = ft.ThemeMode.LIGHT
     c = ft.Switch(label="Dark mode", on_change=theme_changed)
 
-    output_text = ft.Text(color=ft.colors.BLACK)
+    output_text = ft.Text(color=ft.Colors.BLACK)
     output_text.value = 'Type: {}, Mode: {}, Device: {}, Threshold: {}, Resize: {}, Format: {}'.format(options['output_type'], options['mode'], options['device'], options['threshold'], options['resize'], options['format'])
     output_text_container = ft.Container(
                     content=output_text,
                     margin=10,
                     padding=10,
-                    bgcolor=ft.colors.GREEN_100,
+                    bgcolor=ft.Colors.GREEN_100,
                     border_radius=10,
                 )
 
@@ -241,24 +241,24 @@ def main(page):
     pick_files_dialog = FilePicker(on_result=pick_files_result)
 
     get_directory_dialog = FilePicker(on_result=get_directory_result)
-    file_path = Text(color=ft.colors.BLACK)
+    file_path = Text(color=ft.Colors.BLACK)
     file_path.value = 'Input file or directory will be displayed'
     file_path_container = ft.Container(
                 content=file_path,
                 margin=10,
                 padding=10,
-                bgcolor=ft.colors.AMBER,
+                bgcolor=ft.Colors.AMBER,
                 border_radius=10,
             )
 
     get_dest_dialog = FilePicker(on_result=get_dest_result)
-    dest_path = Text(color=ft.colors.BLACK)
+    dest_path = Text(color=ft.Colors.BLACK)
     dest_path.value = 'Output file or directory will be displayed'
     dest_path_container = ft.Container(
             content=dest_path,
             margin=10,
             padding=10,
-            bgcolor=ft.colors.CYAN_200,
+            bgcolor=ft.Colors.CYAN_200,
             border_radius=10,
         )
 
@@ -276,14 +276,14 @@ def main(page):
             [
                 ElevatedButton(
                     "Open File",
-                    icon=icons.UPLOAD_FILE,
+                    icon=Icons.UPLOAD_FILE,
                     on_click=lambda _: pick_files_dialog.pick_files(
                         allow_multiple=False
                     ),
                 ),
                 ElevatedButton(
                     "Open Directory",
-                    icon=icons.FOLDER_OPEN,
+                    icon=Icons.FOLDER_OPEN,
                     on_click=lambda _: get_directory_dialog.get_directory_path(),
                     disabled=page.web,
                 ),
@@ -294,7 +294,7 @@ def main(page):
             [
                 ElevatedButton(
                     "Open Destination",
-                    icon=icons.FOLDER_OPEN,
+                    icon=Icons.FOLDER_OPEN,
                     on_click=lambda _: get_dest_dialog.get_directory_path(),
                     disabled=page.web,
                 ),
@@ -305,13 +305,13 @@ def main(page):
             [
                 ElevatedButton(
                     "Process",
-                    icon=icons.SEND,
+                    icon=Icons.SEND,
                     on_click=process,
                     disabled=page.web,
                 ),
                 ElevatedButton(
                     "Stop",
-                    icon=icons.STOP,
+                    icon=Icons.STOP,
                     on_click=click_abort,
                     disabled=page.web,
                 ),
